@@ -139,6 +139,7 @@ def generar_mapa() -> list:
         - >: indica que el tesoro esta una o mas columnas a la izquierda.
         - v: indica que el tesoro esta una o mas filas abajo.
 
+        152,119,314,338
     Genera mapas que puede que no tengan camino a la solución.
     :return: El mapa generado.
     """
@@ -149,13 +150,12 @@ def generar_mapa() -> list:
     mapa[tesoro_x][tesoro_y] = CELDA_TESORO
 
     # Colocar pistas y trampas
-    ???
-            if mapa[i][j] != CELDA_TESORO:
-                # Decidir aleatoriamente si colocar una pista, una trampa o vacia.
-                opciones = [genera_pista((tesoro_x, tesoro_y), (i, j))]
-                opciones += [CELDA_TRAMPA]
-                opciones += [CELDA_VACIA]
-                mapa[i][j] = random.choice(opciones)
+    #if mapa[i][j] != CELDA_TESORO:
+            # Decidir aleatoriamente si colocar una pista, una trampa o vacia.
+            #opciones = [genera_pista((tesoro_x, tesoro_y), (i, j))]
+            #opciones += [CELDA_TRAMPA]
+            #opciones += [CELDA_VACIA]
+            #mapa[i][j] = random.choice(opciones)
 
     return mapa
 
@@ -218,8 +218,7 @@ def pedir_movimiento(mapa: list) -> str:
             imprimir_mapa(mapa)
 
         if not entrada_correcta:
-            entrada = int(input(
-                "Ingresa tu movimiento (formato: 'u:arriba', 'd:abajo', 'l:izquierda', 'r:derecha', q:salir): "))
+            entrada = int(input("Ingresa tu movimiento (formato: 'u:arriba', 'd:abajo', 'l:izquierda', 'r:derecha', q:salir): "))
 
     return entrada
 
@@ -233,7 +232,8 @@ def obtener_nueva_posicion(posicion_jugador: tuple, movimiento: str) -> tuple:
     :return: La nueva posición del jugador.
     """
 
-    direccion = MOVIMIENTOS(movimiento)
+    direccion = movimiento in MOVIMIENTOS
+    
     nueva_posicion = (posicion_jugador[FILAS] + direccion[FILAS], posicion_jugador[COLUMNAS] + direccion[COLUMNAS])
     return nueva_posicion
 
@@ -261,9 +261,9 @@ def procesar_movimiento(posicion: tuple, mapa: list) -> int:
 
 def simbolo_celda(celda):
     """Retorna el símbolo a pintar en la celda"""
-    if celda != CELDA_VACIA
+    if celda != CELDA_VACIA:
         return DESCONOCIDO
-    else
+    else:
         return CELDA_VACIA 
 
 
@@ -279,7 +279,7 @@ def imprimir_mapa(mapa: list):
     :param mapa: El mapa a imprimir.
     """
     for fila in mapa:
-        print fila
+        print(fila)
 
 
 def muestra_resultado_del_movimiento(resultado: int, nueva_posicion: tuple, mapa: list):
@@ -337,3 +337,4 @@ def jugar():
 
 if __name__ == "__main__":
     jugar()
+#(╯°□°）╯︵ ┻━┻
